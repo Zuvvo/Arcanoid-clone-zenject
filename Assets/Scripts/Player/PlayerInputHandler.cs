@@ -17,6 +17,7 @@ namespace Player
         public void Tick()
         {
             _inputState.MouseHorizontalPosition = Input.mousePosition.x;
+          //  Debug.Log(_inputState.MouseHorizontalPosition);
         }
     }
 }

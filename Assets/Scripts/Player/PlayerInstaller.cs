@@ -13,7 +13,9 @@ namespace Player
         {
             Container.Bind<PlayerSpawner>().AsSingle();
             Container.Bind<PlayerInputState>().AsSingle();
+
             Container.BindInterfacesTo<PlayerMovement>().AsSingle();
+            Container.BindInterfacesTo<PlayerInputHandler>().AsSingle();
         }
     }
 

@@ -7,6 +7,7 @@ namespace Level
         public override void InstallBindings()
         {
             Container.BindInterfacesAndSelfTo<LevelController>().AsSingle();
+            Container.Bind<LevelSpawner>().AsSingle();
         }
     }
 }
