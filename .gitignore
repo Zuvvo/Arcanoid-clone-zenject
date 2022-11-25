@@ -60,4 +60,4 @@ Thumbs.db.meta
 *.vscode
 *.vsconfig
 
-/Assets/Plugins
+Assets/Plugins/
