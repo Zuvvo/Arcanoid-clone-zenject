@@ -7,7 +7,6 @@ namespace Player
 {
     public class PlayerFacade : MonoBehaviour
     {
-
         private PlayerSpawner _playerSpawner;
 
         [Inject]

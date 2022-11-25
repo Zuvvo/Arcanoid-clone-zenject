@@ -8,6 +8,13 @@ namespace Player
     public class PlayerInstaller : MonoInstaller
     {
         [SerializeField] private Settings _settings;
+
+        public override void InstallBindings()
+        {
+            Container.Bind<PlayerSpawner>().AsSingle();
+            Container.Bind<PlayerInputState>().AsSingle();
+            Container.BindInterfacesTo<PlayerMovement>().AsSingle();
+        }
     }
 
     [System.Serializable]
