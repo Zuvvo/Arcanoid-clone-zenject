@@ -46,6 +46,7 @@ MonoBehaviour:
   _settings:
     Rigidbody2D: {fileID: 4170139958296802685}
     SpriteRenderer: {fileID: 4170139958296802675}
+    BoxCollider2D: {fileID: 4170139958296802684}
 --- !u!1 &4170139958296802686
 GameObject:
   m_ObjectHideFlags: 0

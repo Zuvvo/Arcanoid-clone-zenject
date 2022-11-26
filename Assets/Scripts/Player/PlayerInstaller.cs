@@ -11,6 +11,12 @@ namespace Player
 
         public override void InstallBindings()
         {
+            Container.Bind<PlayerModel>().AsSingle()
+                .WithArguments(
+                _settings.Rigidbody2D,
+                _settings.SpriteRenderer,
+                _settings.BoxCollider2D);
+
             Container.Bind<PlayerSpawner>().AsSingle();
             Container.Bind<PlayerInputState>().AsSingle();
 
@@ -24,6 +30,6 @@ namespace Player
     {
         public Rigidbody2D Rigidbody2D;
         public SpriteRenderer SpriteRenderer;
+        public BoxCollider2D BoxCollider2D;
     }
-
 }

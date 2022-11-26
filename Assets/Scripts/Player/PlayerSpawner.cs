@@ -9,7 +9,7 @@ namespace Player
 
         public void Spawn()
         {
-            Debug.Log("Spawn player");
+
         }
     }
 }

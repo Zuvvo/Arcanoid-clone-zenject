@@ -17,6 +17,7 @@ namespace Level
 
         private void InstallLevel()
         {
+            Debug.Log("install level");
             Container.Bind<LevelFacade>()
                 .FromComponentInNewPrefab(_settings.LevelPrefab)
                 .UnderTransformGroup("Level")

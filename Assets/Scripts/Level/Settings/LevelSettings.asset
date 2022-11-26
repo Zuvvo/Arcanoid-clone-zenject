@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: LevelSettings
   m_EditorClassIdentifier: 
   Level:
-    EnemyCount: 10
+    BricksCount: 10
   LevelPrefabInstaller:
     LevelPrefab: {fileID: 4236413851499617249, guid: 637ae5d5fb9d0af44aef18667704e9c3, type: 3}

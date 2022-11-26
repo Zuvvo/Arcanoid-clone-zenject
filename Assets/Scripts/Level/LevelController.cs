@@ -19,8 +19,9 @@ namespace Level
 
         public void Initialize()
         {
-            _playerFacade.Spawn();
             _levelFacade.Spawn();
+            _playerFacade.Spawn();
+            Cursor.visible = false;
         }
 
         public void Tick()

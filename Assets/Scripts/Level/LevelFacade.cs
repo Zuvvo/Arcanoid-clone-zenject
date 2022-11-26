@@ -7,6 +7,7 @@ namespace Level
 {
     public class LevelFacade : MonoBehaviour
     {
+        public BoxCollider2D[] Walls;
         private LevelSpawner _levelSpawner;
 
         [Inject]

@@ -9,7 +9,7 @@ namespace Level
 
         public void Spawn()
         {
-            Debug.Log("Spawn level");
+
         }
     }
 }
