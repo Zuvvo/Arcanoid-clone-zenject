@@ -12,6 +12,7 @@ namespace Player
 
         public PlayerModel(Rigidbody2D rigidbody2D, SpriteRenderer spriteRenderer, BoxCollider2D boxCollider2D)
         {
+            Debug.Log("Player model constructor");
             _rigidBody = rigidbody2D;
             _spriteRenderer = spriteRenderer;
             _boxCollider2D = boxCollider2D;

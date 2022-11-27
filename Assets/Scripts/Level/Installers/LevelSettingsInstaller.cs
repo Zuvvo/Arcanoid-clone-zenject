@@ -12,6 +12,7 @@ namespace Level
 
         public override void InstallBindings()
         {
+            Container.BindInstance(Level).IfNotBound();
             Container.BindInstance(LevelPrefabInstaller).IfNotBound();
         }
 
@@ -19,6 +20,7 @@ namespace Level
         public class LevelSettings
         {
             public float BricksCount;
+            public GameObject BallPrefab;
         }
     }
 }

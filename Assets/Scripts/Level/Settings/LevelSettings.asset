@@ -14,5 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Level:
     BricksCount: 10
+    BallPrefab: {fileID: 2217807169374650817, guid: 566294f2393dfa94f81f160a53e4bc77, type: 3}
   LevelPrefabInstaller:
     LevelPrefab: {fileID: 4236413851499617249, guid: 637ae5d5fb9d0af44aef18667704e9c3, type: 3}
