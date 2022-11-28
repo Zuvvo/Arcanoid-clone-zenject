@@ -5,17 +5,18 @@ using Zenject;
 
 namespace Arkanoid.GameElements
 {
-    public class BallInstaller : MonoInstaller
+    public class BallInstaller : Installer<BallInstaller>
     {
         [SerializeField] private Settings _settings;
 
         public override void InstallBindings()
         {
-            Container.Bind<BallMovement>().AsSingle()
-                .WithArguments(
-                _settings.Rigidbody,
-                _settings.Speed
-                );
+            Debug.Log("InstallBindings ballinstaller");
+            Container.Bind<BallMovement>().AsSingle();
+                //.WithArguments(
+                //_settings.Rigidbody,
+                //_settings.Speed
+                //);
         }
 
         [System.Serializable]
@@ -25,5 +26,4 @@ namespace Arkanoid.GameElements
             public float Speed;
         }
     }
-
 }

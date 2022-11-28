@@ -12,9 +12,8 @@ GameObject:
   - component: {fileID: 2217807169374650830}
   - component: {fileID: 2217807169374650831}
   - component: {fileID: 2217807169374650816}
-  - component: {fileID: 7622292089649026180}
-  - component: {fileID: 4610383832963864604}
-  - component: {fileID: 1557605665190052610}
+  - component: {fileID: 8620674851553223467}
+  - component: {fileID: 774694702551965394}
   m_Layer: 0
   m_Name: Ball
   m_TagString: Untagged
@@ -124,7 +123,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &7622292089649026180
+--- !u!114 &8620674851553223467
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -133,10 +132,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 2217807169374650817}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4f9cb43f08e72b54bad5a5af3218d3cf, type: 3}
+  m_Script: {fileID: 11500000, guid: d8b0286deb25e0b4ba1ee60ce97f411a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &4610383832963864604
+--- !u!114 &774694702551965394
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -145,27 +144,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 2217807169374650817}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 476c2f9a1c12e0a4e8798e9b388e5406, type: 3}
+  m_Script: {fileID: 11500000, guid: 0166d8ff8d905b048b2448179e1f5d11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _settings:
-    Rigidbody: {fileID: 2217807169374650816}
-    Speed: 15
---- !u!114 &1557605665190052610
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2217807169374650817}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 08eca9f7688a0a24685b89133b020c8e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _scriptableObjectInstallers: []
-  _monoInstallers:
-  - {fileID: 4610383832963864604}
-  _installerPrefabs: []
-  _autoRun: 1
-  _kernel: {fileID: 0}
+  _components:
+  - {fileID: 8620674851553223467}
+  _identifier: 
+  _useSceneContext: 0
+  _context: {fileID: 0}
+  _bindType: 0

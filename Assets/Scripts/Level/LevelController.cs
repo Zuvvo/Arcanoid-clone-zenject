@@ -12,11 +12,11 @@ namespace Level
     {
         private readonly PlayerFacade _playerFacade;
         private readonly LevelFacade _levelFacade;
-        private readonly Ball.Factory _ballsFactory;
+        private readonly BallFacade.Factory _ballsFactory;
 
-        private List<Ball> _currentBalls = new List<Ball>();
+        private List<BallFacade> _currentBalls = new List<BallFacade>();
 
-        public LevelController(PlayerFacade playerFacade, LevelFacade levelFacade, Ball.Factory ballsFactory)
+        public LevelController(PlayerFacade playerFacade, LevelFacade levelFacade, BallFacade.Factory ballsFactory)
         {
             _playerFacade = playerFacade;
             _levelFacade = levelFacade;
