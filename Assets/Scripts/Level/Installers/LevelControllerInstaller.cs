@@ -18,7 +18,7 @@ namespace Level
                 .FromPoolableMemoryPool<BallFacade, BallFacadePool>(poolBinder => poolBinder
                 .WithInitialSize(5)
                 .FromSubContainerResolve()
-                .ByNewPrefabInstaller<BallInstaller>(_settings.BallPrefab)
+                .ByNewContextPrefab(_settings.BallPrefab)
                 .UnderTransformGroup("Balls"));
         }
 

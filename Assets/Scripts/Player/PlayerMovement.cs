@@ -28,7 +28,6 @@ namespace Player
             _maxX = walls.Max(x => x.transform.position.x);
         }
 
-
         public void FixedTick()
         {
             float playerSizeOffset = _playerModel.GetPlayerWidthForWallCollision() * _playerSizeMultiplierForWallCollision / 2;

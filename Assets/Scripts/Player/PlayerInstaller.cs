@@ -22,6 +22,8 @@ namespace Player
 
             Container.BindInterfacesTo<PlayerMovement>().AsSingle();
             Container.BindInterfacesTo<PlayerInputHandler>().AsSingle();
+
+            Container.Bind<Rigidbody2D>().FromComponentInParents(gameObject).AsSingle();
         }
     }
 

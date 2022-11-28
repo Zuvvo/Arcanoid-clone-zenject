@@ -12,16 +12,13 @@ namespace Arkanoid.GameElements
 
         public BallMovement(Rigidbody2D rigidbody, float speed)
         {
-            Debug.Log("ball movement constructor");
             _rigidbody = rigidbody;
             _speed = speed;
         }
 
         public void Tick()
         {
-            Debug.Log("tick call");
             _rigidbody.velocity = _rigidbody.velocity.normalized * _speed;
         }
-
     }
 }
