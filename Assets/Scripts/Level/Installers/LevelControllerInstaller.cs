@@ -21,6 +21,7 @@ namespace Arkanoid.Level
                 .UnderTransformGroup("Balls"));
 
             GameSignalsInstaller.Install(Container);
+            Container.BindSignal<BallEscaped>().ToMethod<LevelController>(x => x.OnBallEscaped).FromResolve();
         }
 
         class BallFacadePool : MonoPoolableMemoryPool<IMemoryPool, BallFacade>

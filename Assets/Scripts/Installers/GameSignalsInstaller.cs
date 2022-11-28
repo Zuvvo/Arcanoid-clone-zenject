@@ -7,6 +7,8 @@ namespace Arkanoid
         public override void InstallBindings()
         {
             SignalBusInstaller.Install(Container);
+
+            Container.DeclareSignal<BallEscaped>();
         }
     }
 }

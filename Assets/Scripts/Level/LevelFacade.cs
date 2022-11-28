@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using Zenject;
 
@@ -18,6 +20,18 @@ namespace Arkanoid.Level
         public void Spawn()
         {
             _levelSpawner.Spawn();
+        }
+
+        public float GetXMinWallBorders()
+        {
+            List<BoxCollider2D> walls = Walls.ToList();
+            return walls.Min(x => x.transform.position.x);
+        }
+        
+        public float GetXMaxWallBorders()
+        {
+            List<BoxCollider2D> walls = Walls.ToList();
+            return walls.Max(x => x.transform.position.x);
         }
     }
 }

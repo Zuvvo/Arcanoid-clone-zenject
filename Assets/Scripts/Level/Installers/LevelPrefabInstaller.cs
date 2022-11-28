@@ -10,15 +10,12 @@ namespace Arkanoid.Level
 
         public override void InstallBindings()
         {
-            InstallLevel();
-        }
-
-        private void InstallLevel()
-        {
             Container.Bind<LevelFacade>()
                 .FromComponentInNewPrefab(_settings.LevelPrefab)
                 .UnderTransformGroup("Level")
                 .AsSingle();
+
+
         }
 
         [System.Serializable]

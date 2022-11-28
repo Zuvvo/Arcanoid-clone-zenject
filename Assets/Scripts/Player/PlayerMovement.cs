@@ -22,9 +22,8 @@ namespace Arkanoid.Player
             _playerModel = playerModel;
             _cam = Camera.main;
 
-            List<BoxCollider2D> walls = levelFacade.Walls.ToList();
-            _minX = walls.Min(x => x.transform.position.x);
-            _maxX = walls.Max(x => x.transform.position.x);
+            _minX = levelFacade.GetXMinWallBorders();
+            _maxX = levelFacade.GetXMaxWallBorders();
         }
 
         public void FixedTick()
