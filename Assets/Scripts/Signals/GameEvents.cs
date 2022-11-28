@@ -1,6 +1,9 @@
+using Arkanoid.GameElements;
+
 namespace Arkanoid
 {
-    public struct BallEscaped
+    public class BallEscapedSignal
     {
+        public BallFacade BallRef;
     }
 }

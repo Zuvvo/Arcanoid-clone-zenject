@@ -1,3 +1,4 @@
+using Arkanoid.GameElements;
 using UnityEngine;
 using Zenject;
 
@@ -10,7 +11,7 @@ namespace Arkanoid.Level
         {
             if (collision.gameObject.CompareTag(TagConstants.BallTag))
             {
-                _signalBus.Fire<BallEscaped>();
+                _signalBus.Fire(new BallEscapedSignal() { BallRef = collision.gameObject.GetComponent<BallFacade>() });
             }
         }
     }

@@ -28,13 +28,10 @@ namespace Arkanoid.Level
             SpawnBall();
         }
 
-        public void OnBallEscaped()
+        public void OnBallEscaped(BallEscapedSignal ballEscapedSignal)
         {
-            foreach (var ball in _currentBalls) //todo get ref of destroyed ball
-            {
-                ball.Dispose();
-            }
-            _currentBalls.Clear();
+            ballEscapedSignal.BallRef.Dispose();
+            _currentBalls.Remove(ballEscapedSignal.BallRef);
 
             SpawnBall();
         }
