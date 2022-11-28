@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 using Zenject;
 
-namespace Level
+namespace Arkanoid.Level
 {
     [CreateAssetMenu(fileName = "LevelSettings", menuName = "Scriptable Objects/LevelSettings")]
     public class LevelSettingsInstaller : ScriptableObjectInstaller<LevelSettingsInstaller>

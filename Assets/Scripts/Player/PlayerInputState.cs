@@ -1,8 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-namespace Player
+namespace Arkanoid.Player
 {
     public class PlayerInputState
     {

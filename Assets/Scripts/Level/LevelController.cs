@@ -1,12 +1,9 @@
-using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 using Zenject;
-using Player;
-using System;
+using Arkanoid.Player;
 using Arkanoid.GameElements;
 
-namespace Level
+namespace Arkanoid.Level
 {
     public class LevelController : ITickable, IInitializable
     {

@@ -1,8 +1,7 @@
-using UnityEngine;
 using Zenject;
 using Arkanoid.GameElements;
 
-namespace Level
+namespace Arkanoid.Level
 {
     public class LevelControllerInstaller : MonoInstaller<LevelControllerInstaller>
     {
@@ -20,6 +19,8 @@ namespace Level
                 .FromSubContainerResolve()
                 .ByNewContextPrefab(_settings.BallPrefab)
                 .UnderTransformGroup("Balls"));
+
+            GameSignalsInstaller.Install(Container);
         }
 
         class BallFacadePool : MonoPoolableMemoryPool<IMemoryPool, BallFacade>

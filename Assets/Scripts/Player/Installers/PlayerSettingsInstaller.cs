@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 using Zenject;
 
-namespace Player
+namespace Arkanoid.Player
 {
     [CreateAssetMenu(fileName = "PlayerSettings", menuName = "Scriptable Objects/PlayerSettings")]
     public class PlayerSettingsInstaller : ScriptableObjectInstaller<PlayerSettingsInstaller>

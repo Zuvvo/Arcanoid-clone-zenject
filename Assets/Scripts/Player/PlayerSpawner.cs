@@ -1,6 +1,4 @@
-using UnityEngine;
-
-namespace Player
+namespace Arkanoid.Player
 {
     public class PlayerSpawner
     {

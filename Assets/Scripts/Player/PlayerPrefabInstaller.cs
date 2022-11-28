@@ -1,9 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
 
-namespace Player
+namespace Arkanoid.Player
 {
     public class PlayerPrefabInstaller : MonoInstaller
     {

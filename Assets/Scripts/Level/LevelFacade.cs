@@ -1,13 +1,12 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
 
-namespace Level
+namespace Arkanoid.Level
 {
     public class LevelFacade : MonoBehaviour
     {
         public BoxCollider2D[] Walls;
+        public ObjectsDestroyer ObjectsDestroyer;
         private LevelSpawner _levelSpawner;
 
         [Inject]

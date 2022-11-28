@@ -1,9 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
 
-namespace Level
+namespace Arkanoid.Level
 {
     public class LevelPrefabInstaller : MonoInstaller
     {

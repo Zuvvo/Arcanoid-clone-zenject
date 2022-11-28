@@ -1,11 +1,10 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
-using Level;
+using Arkanoid.Level;
 using System.Linq;
 
-namespace Player
+namespace Arkanoid.Player
 {
     public class PlayerMovement : IFixedTickable
     {
