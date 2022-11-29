@@ -14,7 +14,7 @@ namespace Arkanoid.Player
         private readonly float _maxX;
         private readonly Camera _cam;
 
-        private float _playerSizeMultiplierForWallCollision = 1.4f;
+        private float _playerSizeMultiplierForWallCollision = 1.1f;
 
         public PlayerMovement(PlayerInputState playerInputState, LevelFacade levelFacade, PlayerModel playerModel)
         {

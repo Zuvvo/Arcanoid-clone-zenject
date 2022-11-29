@@ -20,7 +20,13 @@ namespace Arkanoid.Level
         public class LevelSettings
         {
             public float BricksCount;
+            public float SpaceXBetweenBricks;
+            public float SpaceYBetweenBricks;
+            public float LeftOffsetForBricks;
+            public float RightOffsetForBricks;
+            public float TopOffsetForBricks;
             public GameObject BallPrefab;
+            public GameObject BrickPrefab;
         }
     }
 }

@@ -2,12 +2,15 @@ using System;
 using UnityEngine;
 using Zenject;
 
-
 namespace Arkanoid.GameElements
 {
-    public class BallFacade : MonoBehaviour, IPoolable<IMemoryPool>, IDisposable
+    public class BrickFacade : MonoBehaviour, IPoolable<IMemoryPool>, IDisposable
     {
+        public BrickInstaller.Settings Settings => _settings;
+        [Inject] private readonly BrickInstaller.Settings _settings;
+
         private IMemoryPool _pool;
+
         public void Dispose()
         {
             _pool.Despawn(this);
@@ -22,8 +25,7 @@ namespace Arkanoid.GameElements
         {
             _pool = pool;
         }
-
-        public class Factory : PlaceholderFactory<BallFacade>
+        public class Factory : PlaceholderFactory<BrickFacade>
         {
         }
     }

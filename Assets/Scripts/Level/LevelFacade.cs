@@ -25,13 +25,22 @@ namespace Arkanoid.Level
         public float GetXMinWallBorders()
         {
             List<BoxCollider2D> walls = Walls.ToList();
-            return walls.Min(x => x.transform.position.x);
+            BoxCollider2D leftWall = walls.OrderBy(x => x.transform.position.x).First();
+            return leftWall.transform.position.x + leftWall.bounds.size.x / 2;
         }
         
         public float GetXMaxWallBorders()
         {
             List<BoxCollider2D> walls = Walls.ToList();
-            return walls.Max(x => x.transform.position.x);
+            BoxCollider2D rightWall = walls.OrderBy(x => x.transform.position.x).Last();
+            return rightWall.transform.position.x - rightWall.bounds.size.x / 2;
+        }
+
+        public float GetYMaxWallBorders()
+        {
+            List<BoxCollider2D> walls = Walls.ToList();
+            BoxCollider2D topWall = walls.OrderBy(x => x.transform.position.y).Last();
+            return topWall.transform.position.y - topWall.bounds.size.y / 2;
         }
     }
 }
