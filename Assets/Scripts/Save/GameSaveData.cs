@@ -9,10 +9,18 @@ namespace Arkanoid.Save
     {
         public GameSaveData() { }
 
-        public int Highscore;
+        public int CurrentPoints;
         public int CurrentLevel;
         public List<LevelData> LevelsData;
         public List<BallData> BallsData;
+    }
+
+    [System.Serializable]
+    public class HighscoreSaveData : ISaveDataContainer
+    {
+        public HighscoreSaveData() { }
+
+        public int Points;
     }
 
     [System.Serializable]
