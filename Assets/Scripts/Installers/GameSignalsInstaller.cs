@@ -10,6 +10,7 @@ namespace Arkanoid
 
             Container.DeclareSignal<BallEscapedSignal>();
             Container.DeclareSignal<BrickDestroyedSignal>();
+            Container.DeclareSignal<GameStateChanged>();
         }
     }
 }

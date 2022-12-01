@@ -11,6 +11,7 @@ namespace Arkanoid.Save
 
         public int CurrentPoints;
         public int CurrentLevel;
+        public int CurrentLives;
         public List<LevelData> LevelsData;
         public List<BallData> BallsData;
     }

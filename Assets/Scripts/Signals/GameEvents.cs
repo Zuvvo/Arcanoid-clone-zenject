@@ -11,4 +11,9 @@ namespace Arkanoid
     {
         public int Id;
     }
+
+    public class GameStateChanged
+    {
+
+    }
 }

@@ -4,11 +4,16 @@ using Arkanoid.Player;
 using Arkanoid.GameElements;
 using Arkanoid.Save;
 using UnityEngine;
+using System;
 
 namespace Arkanoid.Level
 {
     public class LevelController : IInitializable, ITickable
     {
+        public int CurrentPoints { get; private set; }
+        public int CurrentLives { get; private set; }
+        public int CurrentLevel { get; private set; }
+
         private readonly PlayerFacade _playerFacade;
         private readonly LevelFacade _levelFacade;
         private readonly BallFacade.Factory _ballsFactory;
@@ -16,6 +21,7 @@ namespace Arkanoid.Level
         private readonly LevelSettingsInstaller.LevelSettings _settings;
 
         [Inject] private readonly GameSaveManager _gameSaveManager;
+        [Inject] private readonly SignalBus _signalBus;
 
         private List<BallFacade> _currentBalls = new List<BallFacade>();
         private Dictionary<int, BrickFacade> _currentBricks = new Dictionary<int, BrickFacade>();
@@ -36,10 +42,18 @@ namespace Arkanoid.Level
 
         public void Initialize()
         {
+            SetGameSateData();
             _levelFacade.Spawn();
             _playerFacade.Spawn();
             SpawnBalls();
             SpawnBricks();
+        }
+
+        private void SetGameSateData()
+        {
+            CurrentLevel = _gameSaveManager.GameShouldBeLoaded ? _gameSaveManager.GameSaveData.CurrentLevel : 1;
+            CurrentLives = _gameSaveManager.GameShouldBeLoaded ? _gameSaveManager.GameSaveData.CurrentLives : 3;
+            CurrentPoints = _gameSaveManager.GameShouldBeLoaded ? _gameSaveManager.GameSaveData.CurrentPoints : 0;
         }
         #endregion
 
@@ -56,7 +70,19 @@ namespace Arkanoid.Level
         public void SaveGame()
         {
             SaveBalls();
+            SaveLevel();
+            SavePoints();
             _gameSaveManager.SaveCurrentData();
+        }
+
+        private void SavePoints()
+        {
+            _gameSaveManager.UpdateCurrentLevelData(CurrentLevel);
+        }
+
+        private void SaveLevel()
+        {
+            _gameSaveManager.UpdateCurrentLevelData(CurrentLevel);
         }
 
         public void SaveBalls()
@@ -76,8 +102,9 @@ namespace Arkanoid.Level
         {
             ballEscapedSignal.BallRef.Dispose();
             _currentBalls.Remove(ballEscapedSignal.BallRef);
-
             SpawnBalls();
+            CurrentLives--;
+            CallOnGameStateChanged();
         }
 
         private void SpawnBalls()
@@ -109,6 +136,8 @@ namespace Arkanoid.Level
             BrickFacade brick = _currentBricks[brickDestroyedSignal.Id];
             brick.Dispose();
             _currentBricks.Remove(brickDestroyedSignal.Id);
+            CurrentPoints++;
+            CallOnGameStateChanged();
         }
 
         private void SpawnBricks()
@@ -155,5 +184,10 @@ namespace Arkanoid.Level
         }
 
         #endregion
+
+        private void CallOnGameStateChanged()
+        {
+            _signalBus.Fire(new GameStateChanged());
+        }
     }
 }

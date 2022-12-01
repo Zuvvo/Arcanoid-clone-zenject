@@ -36,6 +36,11 @@ namespace Arkanoid.Save
             GameSaveData.CurrentLevel = level;
         }
 
+        public void UpdateCurrentPointsData(int points)
+        {
+            GameSaveData.CurrentPoints = points;
+        }
+
         public void UpdateBallsData(List<BallData> ballsData)
         {
             GameSaveData.BallsData = ballsData;
