@@ -6,6 +6,7 @@ namespace Arkanoid.GameElements
 {
     public class BrickFacade : MonoBehaviour, IPoolable<IMemoryPool>, IDisposable
     {
+        public int Id { get; set; }
         public BrickInstaller.Settings Settings => _settings;
         [Inject] private readonly BrickInstaller.Settings _settings;
 

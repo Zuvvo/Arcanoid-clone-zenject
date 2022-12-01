@@ -9,6 +9,7 @@ namespace Arkanoid
             SignalBusInstaller.Install(Container);
 
             Container.DeclareSignal<BallEscapedSignal>();
+            Container.DeclareSignal<BrickDestroyedSignal>();
         }
     }
 }

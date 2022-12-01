@@ -29,6 +29,7 @@ namespace Arkanoid.Level
 
             GameSignalsInstaller.Install(Container);
             Container.BindSignal<BallEscapedSignal>().ToMethod<LevelController>(x => x.OnBallEscaped).FromResolve();
+            Container.BindSignal<BrickDestroyedSignal>().ToMethod<LevelController>(x => x.OnBrickDestroyed).FromResolve();
         }
 
         class BallFacadePool : MonoPoolableMemoryPool<IMemoryPool, BallFacade>

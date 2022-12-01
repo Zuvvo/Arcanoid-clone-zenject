@@ -6,4 +6,9 @@ namespace Arkanoid
     {
         public BallFacade BallRef;
     }
+
+    public class BrickDestroyedSignal
+    {
+        public int Id;
+    }
 }

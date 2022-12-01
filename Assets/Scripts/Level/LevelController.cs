@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace Arkanoid.Level
 {
-    public class LevelController : ITickable, IInitializable
+    public class LevelController : IInitializable
     {
         private readonly PlayerFacade _playerFacade;
         private readonly LevelFacade _levelFacade;
@@ -15,7 +15,9 @@ namespace Arkanoid.Level
         private readonly LevelSettingsInstaller.LevelSettings _settings;
 
         private List<BallFacade> _currentBalls = new List<BallFacade>();
+        private Dictionary<int, BrickFacade> _currentBricks = new Dictionary<int, BrickFacade>();
 
+        #region Initializers
         public LevelController(PlayerFacade playerFacade,
             LevelFacade levelFacade,
             BallFacade.Factory ballsFactory,
@@ -36,6 +38,9 @@ namespace Arkanoid.Level
             SpawnBall();
             SpawnBricks();
         }
+        #endregion
+
+        #region Balls
 
         public void OnBallEscaped(BallEscapedSignal ballEscapedSignal)
         {
@@ -51,6 +56,16 @@ namespace Arkanoid.Level
             float xPos = UnityEngine.Random.Range(_levelFacade.GetXMinWallBorders(), _levelFacade.GetXMaxWallBorders());
             ball.transform.position = new Vector3(xPos, 0, 0);
             _currentBalls.Add(ball);
+        }
+        #endregion
+
+        #region Bricks
+
+        public void OnBrickDestroyed(BrickDestroyedSignal brickDestroyedSignal)
+        {
+            BrickFacade brick = _currentBricks[brickDestroyedSignal.Id];
+            brick.Dispose();
+            _currentBricks.Remove(brickDestroyedSignal.Id);
         }
 
         private void SpawnBricks()
@@ -69,15 +84,19 @@ namespace Arkanoid.Level
 
             int row = 0;
             int column = 0;
+            int idCounter = 0;
 
             for (int i = 0; i < _settings.BricksCount; i++)
             {
                 brick = _bricksFactory.Create();
+                brick.Id = idCounter;
+                _currentBricks.Add(brick.Id, brick);
+
                 float startXPos = minX + _settings.LeftOffsetForBricks + (brickLength / 2);
                 float posX = startXPos;
                 posX += column * (brickLength + _settings.SpaceXBetweenBricks);
                 column += 1;
-                if(posX + brickLength / 2 + _settings.RightOffsetForBricks > maxX)
+                if (posX + brickLength / 2 + _settings.RightOffsetForBricks > maxX)
                 {
                     posX = startXPos;
                     row += 1;
@@ -87,12 +106,11 @@ namespace Arkanoid.Level
                 float posY = maxY - _settings.TopOffsetForBricks - brickHeight / 2 - (row * (brickHeight + _settings.SpaceYBetweenBricks));
 
                 brick.transform.position = new Vector3(posX, posY, 0);
+
+                idCounter++;
             }
         }
 
-        public void Tick()
-        {
-
-        }
+        #endregion
     }
 }
