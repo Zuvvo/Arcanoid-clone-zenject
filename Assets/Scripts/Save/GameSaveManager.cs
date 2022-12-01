@@ -71,26 +71,19 @@ namespace Arkanoid.Save
         {
             HighscoresData = new HighscoreSaveData();
 
-            try
-            {
-                string saveDirectoryFullPath = Path.GetFullPath(Path.Combine(Application.persistentDataPath, DIRECTORY_NAME));
-                string fullPath = Path.Combine(saveDirectoryFullPath, $"{HIGHSCORE_FILE_NAME}.{SAVE_EXTENSION}");
+            string saveDirectoryFullPath = Path.GetFullPath(Path.Combine(Application.persistentDataPath, DIRECTORY_NAME));
+            string fullPath = Path.Combine(saveDirectoryFullPath, $"{HIGHSCORE_FILE_NAME}.{SAVE_EXTENSION}");
 
-                if (!File.Exists(fullPath))
-                {
-                    SaveHighscoresToFile();
-                }
-                else
-                {
-                    XmlSerializer serializer = new XmlSerializer(typeof(HighscoreSaveData));
-                    StreamReader reader = new StreamReader(fullPath);
-                    HighscoresData = (HighscoreSaveData)serializer.Deserialize(reader);
-                    reader.Close();
-                }
-            }
-            catch (Exception e)
+            if (!File.Exists(fullPath))
             {
-                Debug.LogError(e.ToString());
+                SaveHighscoresToFile();
+            }
+            else
+            {
+                XmlSerializer serializer = new XmlSerializer(typeof(HighscoreSaveData));
+                StreamReader reader = new StreamReader(fullPath);
+                HighscoresData = (HighscoreSaveData)serializer.Deserialize(reader);
+                reader.Close();
             }
         }
 
@@ -109,9 +102,9 @@ namespace Arkanoid.Save
                 Directory.CreateDirectory(saveDirectoryFullPath);
             }
 
-            XmlSerializer xs = new XmlSerializer(typeof(GameSaveData));
+            XmlSerializer xs = new XmlSerializer(typeof(HighscoreSaveData));
             TextWriter tw = new StreamWriter(Path.Combine(saveDirectoryFullPath, $"{HIGHSCORE_FILE_NAME}.{SAVE_EXTENSION}"));
-            xs.Serialize(tw, GameSaveData);
+            xs.Serialize(tw, HighscoresData);
             tw.Close();
         }
 
