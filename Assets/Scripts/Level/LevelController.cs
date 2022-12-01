@@ -38,7 +38,7 @@ namespace Arkanoid.Level
         {
             _levelFacade.Spawn();
             _playerFacade.Spawn();
-            SpawnBall();
+            SpawnBalls();
             SpawnBricks();
         }
         #endregion
@@ -64,7 +64,7 @@ namespace Arkanoid.Level
             List<BallData> ballsData = new List<BallData>();
             for (int i = 0; i < _currentBalls.Count; i++)
             {
-                ballsData.Add(_currentBalls[i].GetNewBallSaveData());
+                ballsData.Add(_currentBalls[i].GetSaveDataContainer() as BallData);
             }
             _gameSaveManager.UpdateBallsData(ballsData);
         }
@@ -77,15 +77,28 @@ namespace Arkanoid.Level
             ballEscapedSignal.BallRef.Dispose();
             _currentBalls.Remove(ballEscapedSignal.BallRef);
 
-            SpawnBall();
+            SpawnBalls();
         }
 
-        private void SpawnBall()
+        private void SpawnBalls()
         {
-            var ball = _ballsFactory.Create();
-            float xPos = UnityEngine.Random.Range(_levelFacade.GetXMinWallBorders(), _levelFacade.GetXMaxWallBorders());
-            ball.transform.position = new Vector3(xPos, 0, 0);
-            _currentBalls.Add(ball);
+            if (_gameSaveManager.GameShouldBeLoaded)
+            {
+                for (int i = 0; i < _gameSaveManager.GameSaveData.BallsData.Count; i++)
+                {
+                    BallData data = _gameSaveManager.GameSaveData.BallsData[i];
+                    var ball = _ballsFactory.Create();
+                    ball.UpdateObjectFromSaveData(data);
+                    _currentBalls.Add(ball);
+                }
+            }
+            else
+            {
+                var ball = _ballsFactory.Create();
+                float xPos = UnityEngine.Random.Range(_levelFacade.GetXMinWallBorders(), _levelFacade.GetXMaxWallBorders());
+                ball.transform.position = new Vector3(xPos, 0, 0);
+                _currentBalls.Add(ball);
+            }
         }
         #endregion
 

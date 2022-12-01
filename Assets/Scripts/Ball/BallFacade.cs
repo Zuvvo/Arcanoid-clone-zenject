@@ -6,7 +6,7 @@ using Arkanoid.Save;
 
 namespace Arkanoid.GameElements
 {
-    public class BallFacade : MonoBehaviour, IPoolable<IMemoryPool>, IDisposable
+    public class BallFacade : MonoBehaviour, IPoolable<IMemoryPool>, IDisposable, ISaveDataObject
     {
         private IMemoryPool _pool;
         [Inject] private BallInstaller.Settings _settings;
@@ -25,7 +25,7 @@ namespace Arkanoid.GameElements
             _pool = pool;
         }
 
-        public BallData GetNewBallSaveData()
+        public ISaveDataContainer GetSaveDataContainer()
         {
             BallData data = new BallData()
             {
@@ -36,6 +36,13 @@ namespace Arkanoid.GameElements
             };
 
             return data;
+        }
+
+        public void UpdateObjectFromSaveData(ISaveDataContainer data)
+        {
+            BallData ballData = data as BallData;
+            _settings.Rigidbody.velocity = new Vector2(ballData.BallMoveVectorX, ballData.BallMoveVectorY);
+            transform.position = new Vector3(ballData.BallPositionX, ballData.BallPositionY, 0);
         }
 
         public class Factory : PlaceholderFactory<BallFacade>

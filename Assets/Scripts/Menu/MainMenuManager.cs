@@ -4,18 +4,29 @@ using UnityEngine;
 using Zenject;
 using UnityEngine.SceneManagement;
 using Arkanoid.Constants;
+using Arkanoid.Save;
 
 namespace Arkanoid.Menu
 {
     public class MainMenuManager
     {
+        [Inject] private readonly GameSaveManager _gameSaveManager;
         public void ContinueGame()
         {
-            Debug.Log("continue game");
+            if (_gameSaveManager.LoadDataFromFile())
+            {
+                _gameSaveManager.GameShouldBeLoaded = true;
+                SceneManager.LoadScene(SceneNames.Game);
+            }
+            else
+            {
+                Debug.LogError("Game can't be loaded");
+            }
         }
 
         public void StartGame()
         {
+            _gameSaveManager.GameShouldBeLoaded = false;
             SceneManager.LoadScene(SceneNames.Game);
         }
 

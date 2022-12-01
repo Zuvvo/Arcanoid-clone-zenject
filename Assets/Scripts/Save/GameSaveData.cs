@@ -5,8 +5,10 @@ using UnityEngine;
 namespace Arkanoid.Save
 {
     [System.Serializable]
-    public class GameSaveData
+    public class GameSaveData : ISaveDataContainer
     {
+        public GameSaveData() { }
+
         public int Highscore;
         public int CurrentLevel;
         public List<LevelData> LevelsData;
@@ -14,8 +16,10 @@ namespace Arkanoid.Save
     }
 
     [System.Serializable]
-    public class BallData
+    public class BallData : ISaveDataContainer
     {
+        public BallData() { }
+
         public float BallPositionX;
         public float BallPositionY;
         public float BallMoveVectorX;
@@ -23,15 +27,19 @@ namespace Arkanoid.Save
     }
 
     [System.Serializable]
-    public class LevelData
+    public class LevelData : ISaveDataContainer
     {
+        public LevelData() { }
+
         public List<BrickData> BricksData;
     }
 
 
     [System.Serializable]
-    public class BrickData
+    public class BrickData : ISaveDataContainer
     {
+        public BrickData() { }
+
         public int Id;
         public bool IsDestroyed;
     }
