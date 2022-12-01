@@ -2,17 +2,20 @@ using System.Collections.Generic;
 using Zenject;
 using Arkanoid.Player;
 using Arkanoid.GameElements;
+using Arkanoid.Save;
 using UnityEngine;
 
 namespace Arkanoid.Level
 {
-    public class LevelController : IInitializable
+    public class LevelController : IInitializable, ITickable
     {
         private readonly PlayerFacade _playerFacade;
         private readonly LevelFacade _levelFacade;
         private readonly BallFacade.Factory _ballsFactory;
         private readonly BrickFacade.Factory _bricksFactory;
         private readonly LevelSettingsInstaller.LevelSettings _settings;
+
+        [Inject] private readonly GameSaveManager _gameSaveManager;
 
         private List<BallFacade> _currentBalls = new List<BallFacade>();
         private Dictionary<int, BrickFacade> _currentBricks = new Dictionary<int, BrickFacade>();
@@ -37,6 +40,33 @@ namespace Arkanoid.Level
             _playerFacade.Spawn();
             SpawnBall();
             SpawnBricks();
+        }
+        #endregion
+
+        #region Save
+
+        public void Tick()
+        {
+            if (Input.GetKeyDown(KeyCode.F5))
+            {
+                SaveGame();
+            }
+        }
+
+        public void SaveGame()
+        {
+            SaveBalls();
+            _gameSaveManager.SaveCurrentData();
+        }
+
+        public void SaveBalls()
+        {
+            List<BallData> ballsData = new List<BallData>();
+            for (int i = 0; i < _currentBalls.Count; i++)
+            {
+                ballsData.Add(_currentBalls[i].GetNewBallSaveData());
+            }
+            _gameSaveManager.UpdateBallsData(ballsData);
         }
         #endregion
 

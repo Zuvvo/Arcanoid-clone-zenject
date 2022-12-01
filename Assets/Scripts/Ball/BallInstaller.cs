@@ -14,6 +14,8 @@ namespace Arkanoid.GameElements
                 _settings.Rigidbody,
                 _settings.Speed
                 );
+
+            Container.BindInstance(_settings).AsSingle();
         }
 
         [System.Serializable]
