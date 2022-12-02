@@ -61,9 +61,9 @@ namespace Arkanoid.Level
 
         public void Tick()
         {
-            if (Input.GetKeyDown(KeyCode.F5))
+            if (Input.GetKeyDown(KeyCode.Escape))
             {
-                SaveGame();
+                _signalBus.Fire(new GamePaused());
             }
         }
 
@@ -105,6 +105,11 @@ namespace Arkanoid.Level
             SpawnBalls();
             CurrentLives--;
             CallOnGameStateChanged();
+
+            if(CurrentLives <= 0)
+            {
+                LoseGame();
+            }
         }
 
         private void SpawnBalls()
@@ -185,9 +190,24 @@ namespace Arkanoid.Level
 
         #endregion
 
+        #region GameState
+
+        private void LoseGame()
+        {
+            _gameSaveManager.SaveHighscores(new HighscoreSaveData() { Points = CurrentPoints });
+            _signalBus.Fire(new GameLost() { Score = CurrentPoints });
+        }
+
+        private void WinGame()
+        {
+
+        }
+
         private void CallOnGameStateChanged()
         {
             _signalBus.Fire(new GameStateChanged());
         }
+
+        #endregion
     }
 }

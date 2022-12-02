@@ -16,4 +16,14 @@ namespace Arkanoid
     {
 
     }
+
+    public class GameLost
+    {
+        public int Score;
+    }
+
+    public class GamePaused
+    {
+
+    }
 }

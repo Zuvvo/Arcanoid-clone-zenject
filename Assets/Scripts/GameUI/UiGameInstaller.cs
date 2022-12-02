@@ -11,6 +11,8 @@ namespace Arkanoid.UI
             Container.Bind<UiGameManager>().FromComponentOn(_uiHolder).AsSingle();
 
             Container.BindSignal<GameStateChanged>().ToMethod<UiGameManager>(x => x.OnGameStateChanged).FromResolve();
+            Container.BindSignal<GameLost>().ToMethod<UiGameManager>(x => x.OnGameLost).FromResolve();
+            Container.BindSignal<GamePaused>().ToMethod<UiGameManager>(x => x.OnGamePaused).FromResolve();
         }
     }
 }

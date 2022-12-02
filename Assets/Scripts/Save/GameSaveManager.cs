@@ -50,8 +50,7 @@ namespace Arkanoid.Save
         {
             try
             {
-                string saveDirectoryFullPath = Path.GetFullPath(Path.Combine(Application.persistentDataPath, DIRECTORY_NAME));
-                string fullPath = Path.Combine(saveDirectoryFullPath, $"{SAVE_FILE_NAME}.{SAVE_EXTENSION}");
+                string fullPath = GetFullPathOfSaveFile();
 
                 if (!File.Exists(fullPath))
                 {
@@ -69,6 +68,14 @@ namespace Arkanoid.Save
             {
                 Debug.LogError(e.ToString());
                 return false;
+            }
+        }
+
+        public void TryDestroyCurrentSave()
+        {
+            if (DoesSaveFileExists())
+            {
+                File.Delete(GetFullPathOfSaveFile());
             }
         }
 
@@ -94,8 +101,11 @@ namespace Arkanoid.Save
 
         public void SaveHighscores(HighscoreSaveData data)
         {
-            HighscoresData = data;
-            SaveHighscoresToFile();
+            if(data.Points > HighscoresData.Points)
+            {
+                HighscoresData = data;
+                SaveHighscoresToFile();
+            }
         }
 
         private void SaveHighscoresToFile()
@@ -123,16 +133,21 @@ namespace Arkanoid.Save
             }
 
             XmlSerializer xs = new XmlSerializer(typeof(GameSaveData));
-            TextWriter tw = new StreamWriter(Path.Combine(saveDirectoryFullPath, $"{SAVE_FILE_NAME}.{SAVE_EXTENSION}"));
+            TextWriter tw = new StreamWriter(GetFullPathOfSaveFile());
             xs.Serialize(tw, GameSaveData);
             tw.Close();
         }
 
         public bool DoesSaveFileExists()
         {
+            return File.Exists(GetFullPathOfSaveFile());
+        }
+
+        private string GetFullPathOfSaveFile()
+        {
             string saveDirectoryFullPath = Path.GetFullPath(Path.Combine(Application.persistentDataPath, DIRECTORY_NAME));
-            string savePath = Path.GetFullPath(Path.Combine(saveDirectoryFullPath, string.Format("{0}.{1}", SAVE_FILE_NAME, SAVE_EXTENSION)));
-            return File.Exists(savePath);
+            string fullPath = Path.Combine(saveDirectoryFullPath, $"{SAVE_FILE_NAME}.{SAVE_EXTENSION}");
+            return fullPath;
         }
     }
 }
